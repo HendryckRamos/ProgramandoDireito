@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - R.A.M.O.S</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loginContainer">
+        <h2>Login</h2>
+        <input type="text" id="usuario" placeholder="Usuário">
+        <input type="password" id="senha" placeholder="Senha">
+        <button onclick="login()">Entrar</button>
+    </div>
+    
+    <div id="dashboardContainer" style="display: none;">
+        <h2>Bem-vindo, <span id="usuarioLogado"></span>! <button onclick="logout()">Sair</button></h2>
+        <hr>   
+        
+<div class="container">
+    <h1>Gerenciador de Atendimentos</h1>
+
+    <h3>Cadastrar Novo Assistido</h3>
+    <input type="text" id="nome" placeholder="Nome do assistido">
+    <input type="tel" id="telefone" placeholder="Telefone (WhatsApp)">
+    <button onclick="cadastrarAssistido()">Cadastrar</button>
+
+    <h3>Buscar Assistido</h3>
+    <input type="text" id="buscar" placeholder="Digite o nome para buscar" oninput="buscarAssistido()">
+
+    <h3>Lista de Assistidos</h3>
+    <ul id="listaAssistidos"></ul>
+    
+    <div id="anotacoesContainer" style="display: none;">
+        <h3>Anotações de <span id="assistidoNome"></span></h3>
+        
+        <label for="responsavel">Responsável:</label>
+        <select id="responsavel" onchange="atualizarResponsavel()">
+            <option value="">Sem responsável</option>
+            <option value="admin">Admin</option>
+            <option value="estagiario1">Estagiário 1</option>
+            <option value="estagiario2">Estagiário 2</option>
+        </select>
+
+        <label for="status">Status:</label>
+        <select id="status" onchange="atualizarStatus()">
+            <option value="pendente">Pendente</option>
+            <option value="documentos enviados">Documentos Enviados</option>
+            <option value="não respondeu">Não Respondeu</option>
+            <option value="concluído">Concluído</option>
+        </select>
+    
+        <textarea id="novaAnotacao" placeholder="Digite a anotação"></textarea>
+        <button onclick="salvarAnotacao()">Adicionar Anotação</button>
+        <ul id="listaAnotacoes"></ul>
+        <button onclick="fecharAnotacoes()">Fechar</button>
+    </div>    
+
+    <button onclick="exportarDados()">💾 Exportar Dados</button>
+    <input type="file" id="importarArquivo" onchange="importarDados()" />
+    <button onclick="baixarBackup()">📂 Baixar Backup</button>   
+
+<script src="script.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCi4uWXTooHR-XZ0JQbHtL1gXMs6-vxpqc",
+      authDomain: "dashboard-defensoria.firebaseapp.com",
+      databaseURL: "https://dashboard-defensoria-default-rtdb.firebaseio.com",
+      projectId: "dashboard-defensoria",
+      storageBucket: "dashboard-defensoria.firebasestorage.app",
+      messagingSenderId: "664245859916",
+      appId: "1:664245859916:web:9a6f90b86fbd60c7dc66e9"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
+</body>
+</html>
